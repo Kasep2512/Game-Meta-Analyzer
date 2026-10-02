@@ -1,17 +1,18 @@
+```mermaid
 erDiagram
     HEROES {
         int id PK
         string name
         string role
     }
-
+    
     PATCH_NOTES {
         int id PK
         string version_number
         date release_date
         text description
     }
-
+    
     HERO_STATS {
         int id PK
         int hero_id FK
@@ -20,14 +21,14 @@ erDiagram
         float pick_rate
         float ban_rate
     }
-
-    TOURNAMENT {
+    
+    TOURNAMENTS {
         int id PK
         string name
         date start_date
         date end_date
     }
-
+    
     MATCHES {
         int id PK
         int tournament_id FK
@@ -37,6 +38,7 @@ erDiagram
         date match_date
     }
 
-    HEROES ||--o{ HERO_STATS : "memiliki" }
-    PATCH_NOTES ||--o{ HERO_STATS : "dianalisis pada" }
-    TOURNAMENT ||--o{ MATCHES : "menyelenggarakan" }
+    HEROES ||--o{ HERO_STATS : "memiliki"
+    PATCH_NOTES ||--o{ HERO_STATS : "dianalisis pada"
+    TOURNAMENTS ||--o{ MATCHES : "menyelenggarakan"
+```
