@@ -45,8 +45,48 @@ def main():
     elif menu == "Daftar Hero":
         render_hero_list()
     elif menu == "Turnamen":
-        st.title("🏆 Pelacak Turnamen")
-        st.write("Jadwal dan klasemen turnamen akan muncul di sini.")
+        render_tournament()
+
+
+def render_tournament():
+    st.title("🏆 Pelacak Turnamen")
+    st.write("Klasemen, jadwal, dan hasil pertandingan Liga Musim 1.")
+
+    st.markdown("---")
+    st.subheader("📊 Klasemen Sementara")
+
+    # data klasemen (mock data)
+    data_klasemen = {
+        "Tim": ["Tim Alpha", "Tim Bravo", "Tim Cobra", "Tim Delta", "Tim Echo"],
+        "Main": [7, 7, 7, 7, 7],
+        "Menang": [6, 5, 5, 4, 3],
+        "Kalah": [1, 2, 2, 3, 4],
+        "Poin": [18, 15, 15, 12, 9],
+    }
+    df_klasemen = pd.DataFrame(data_klasemen)
+
+    df_klasemen.index = df_klasemen.index + 1
+
+    st.dataframe(df_klasemen, use_container_width=True)
+
+    st.markdown("---")
+
+    st.subheader("🔥 Statistik Draft Turnamen")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        with st.container(border=True):
+            st.markdown("📈 **Paling sering dipilih**")
+            st.progress(0.82, text="Lu Bu (82%)")
+            st.progress(0.75, text="Marco Polo (75%)")
+            st.progress(0.68, text="Diaochan (68%)")
+
+    with col2:
+        with st.container(border=True):
+            st.markdown("🚫 **Paling sering diban**")
+            st.progress(0.71, text="Lu Bu (71%)")
+            st.progress(0.57, text="Li Bai (57%)")
+            st.progress(0.55, text="Diaochan (55%)")
 
 
 def render_hero_list():
